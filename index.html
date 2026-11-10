@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <meta name="description" content="A choice-driven infinite dark fantasy RPG. Awaken, descend, and build your shadow legion.">
+  <title>SHADOW SYSTEM ∞ — The Eternal Monarch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Shadow System home"><span class="brand-mark">∞</span><span>SHADOW<span class="brand-muted">/SYSTEM</span><small>ETERNAL MONARCH PROTOCOL</small></span></a>
+      <div class="top-status"><span class="online-dot"></span><span>SYSTEM ONLINE</span><span class="top-divider"></span><span id="save-status">LOCAL SAVE READY</span></div>
+      <button class="icon-button" id="sound-toggle" title="Toggle sound" aria-label="Toggle sound">♫</button>
+    </header>
+
+    <section class="hud" id="hud" hidden>
+      <div class="hud-player"><div class="avatar" id="avatar-initial">J</div><div><div class="eyebrow">AWAKENED</div><strong id="hud-name">JOKERSKID</strong></div></div>
+      <div class="hud-stat"><span>LEVEL</span><strong id="hud-level">01</strong><small id="hud-xp">0 / 100 XP</small><div class="xp-track"><i id="xp-fill"></i></div></div>
+      <div class="hud-stat vitals"><span>HP</span><strong id="hud-hp">100 / 100</strong><div class="meter hp-meter"><i id="hp-fill"></i></div><small id="hud-mp">MP 40 / 40</small><div class="meter mp-meter"><i id="mp-fill"></i></div></div>
+      <div class="hud-stat"><span>CLASS</span><strong id="hud-class">AWAKENER</strong><small id="hud-background">UNKNOWN AWAKENER</small></div>
+      <div class="hud-stat"><span>SHADOWS RECRUITED</span><strong id="hud-shadows">00</strong><small id="hud-rank">NO RANK</small></div>
+      <div class="hud-stat currency"><span>ESSENCE</span><strong id="hud-currency">0 <b>◈</b></strong><small id="hud-location">GATE ZERO</small></div>
+    </section>
+
+    <main id="main-content">
+      <section id="welcome-screen" class="welcome-screen">
+        <div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div>
+        <div class="welcome-copy"><span class="system-label"><i></i> SYSTEM INITIALIZED · BUILD 01.∞</span>
+          <p class="welcome-kicker">THE GATE HAS OPENED</p><h1>SHADOW<br><span>SYSTEM</span> <em>∞</em></h1>
+          <p class="welcome-subtitle">Every ending is another beginning.<br>Rise from the dark. Become the one who commands it.</p>
+          <button class="primary-button" id="begin-button">INITIALIZE AWAKENING <span>↗</span></button>
+          <button class="text-button" id="continue-button" hidden>CONTINUE SAVED RUN <span>→</span></button>
+          <div class="welcome-foot"><span>AN INFINITE, CHOICE-DRIVEN RPG</span><span>NO DESTINATION. ONLY ASCENSION.</span></div>
+        </div>
+        <div class="welcome-art" aria-hidden="true"><div class="sigil-ring ring-a"></div><div class="sigil-ring ring-b"></div><div class="sigil-core">∞</div><div class="sigil-line"></div><div class="art-caption">MONARCH<br>PROTOCOL</div><div class="art-coordinate">37° 33' 19" N<br>SECTOR: UNKNOWN</div></div>
+      </section>
+
+      <section id="creation-screen" class="creation-screen" hidden>
+        <div class="creation-card"><div class="system-label"><i></i> CHARACTER SYNCHRONIZATION</div><p class="welcome-kicker">A NEW AWAKENER DETECTED</p><h2>Who will rise<br>from the <span>void?</span></h2>
+          <label class="field-label" for="player-name">AWAKENER NAME</label><input id="player-name" class="name-input" maxlength="20" autocomplete="off" placeholder="JOKERSKID" value="JOKERSKID">
+          <div class="field-label background-label">CHOOSE YOUR ORIGIN</div>
+          <div class="background-options">
+            <button class="background-card selected" data-background="The Forgotten One"><span class="bg-icon">◌</span><strong>THE FORGOTTEN ONE</strong><small>Unseen by fate. +2 Luck, +1 Perception</small></button>
+            <button class="background-card" data-background="The Exiled Hunter"><span class="bg-icon">⌁</span><strong>THE EXILED HUNTER</strong><small>Cast out, never broken. +2 Agility, +1 Strength</small></button>
+            <button class="background-card" data-background="The Unknown Awakener"><span class="bg-icon">✧</span><strong>THE UNKNOWN AWAKENER</strong><small>A blank page. +2 Intelligence, +1 Vitality</small></button>
+          </div>
+          <button id="create-character" class="primary-button full-button">CONFIRM AWAKENING <span>↗</span></button>
+          <button id="back-welcome" class="text-button">← BACK</button>
+        </div>
+      </section>
+
+      <section id="game-screen" class="game-layout" hidden>
+        <aside class="sidebar">
+          <div class="sidebar-label">MONARCH INTERFACE</div>
+          <nav class="main-nav" aria-label="Game panels">
+            <button class="nav-item active" data-panel="journey"><span>◈</span> Journey <kbd>01</kbd></button>
+            <button class="nav-item" data-panel="character"><span>♙</span> Character <kbd id="points-badge" hidden>0</kbd></button>
+            <button class="nav-item" data-panel="skills"><span>✳</span> Skill tree</button>
+            <button class="nav-item" data-panel="inventory"><span>▤</span> Inventory</button>
+            <button class="nav-item" data-panel="army"><span>♟</span> Shadow legion <kbd id="army-badge">0</kbd></button>
+            <button class="nav-item" data-panel="quests"><span>☷</span> Quest log</button>
+            <button class="nav-item" data-panel="guild"><span>⌂</span> Guild</button>
+          </nav>
+          <div class="sidebar-bottom"><div class="guild-mini"><span class="mini-icon">⌬</span><div><small>GUILD STATUS</small><strong id="guild-status">UNAFFILIATED</strong></div><span class="status-pip"></span></div><button class="nav-item admin-link" data-panel="admin"><span>⚙</span> System admin</button><button class="nav-item" id="save-button"><span>⇩</span> Save progress</button><button class="nav-item" id="exit-button"><span>↩</span> Return to title</button></div>
+        </aside>
+        <section class="play-area">
+          <div class="view-heading"><div><div class="breadcrumb" id="breadcrumb">WORLD / THE ASHEN FRONTIER</div><h2 id="view-title">The Ashen Frontier</h2></div><div class="heading-right"><span class="region-rank" id="region-rank">F-RANK REGION</span><span class="day-count" id="day-count">CYCLE 001</span></div></div>
+          <div id="journey-panel" class="panel-view">
+            <div class="scene-card"><div class="scene-image" id="scene-image"><div class="scene-grid"></div><div class="scene-moon"></div><div class="scene-rune">∞</div><div class="scene-bottom"><span id="scene-location">ASHEN FRONTIER · OUTER RIM</span><span id="scene-time">UNKNOWN CYCLE</span></div></div><div class="scene-content"><div class="scene-overline"><span class="scene-pulse"></span><span id="scene-tag">FIELD REPORT · 001</span><span class="line-fill"></span><span id="scene-weather">ASHFALL</span></div><div id="narrative" class="narrative"></div></div></div>
+            <div class="interaction-area"><div class="interaction-heading"><div><span class="eyebrow">YOUR NEXT MOVE</span><h3>Choose your path</h3></div><span class="action-hint">Every action shapes the world <span>↘</span></span></div><div id="choices" class="choices-grid"></div><form id="custom-action-form" class="custom-action"><span class="custom-mark">⌘</span><input id="custom-action-input" autocomplete="off" maxlength="120" placeholder="Describe a custom action…"><kbd>ENTER</kbd><button aria-label="Submit custom action">↗</button></form></div>
+          </div>
+          <div id="secondary-panel" class="panel-view secondary-panel" hidden></div>
+          <footer class="game-footer"><span><i class="footer-dot"></i> LOCAL WORLD INSTANCE</span><span>SHADOW SYSTEM ∞ <b>v1.0</b></span><span id="footer-message">PROGRESS SAVES AUTOMATICALLY</span></footer>
+        </section>
+        <aside class="right-rail"><div class="rail-heading"><span class="eyebrow">LIVE FEED</span><span class="live-pill"><i></i> LIVE</span></div><div class="feed-list" id="event-feed"></div><div class="rail-divider"></div><div class="rail-heading"><span class="eyebrow">ACTIVE DIRECTIVE</span><button class="tiny-link" data-open-panel="quests">VIEW ALL ↗</button></div><div id="active-quest-card" class="active-quest-card"></div><div class="rail-bottom"><span>WORLD SEED</span><code id="world-seed">000000</code></div></aside>
+      </section>
+    </main>
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <div id="modal-root"></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
